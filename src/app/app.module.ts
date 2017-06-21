@@ -6,10 +6,25 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { LobbyPage } from '../pages/lobby/lobby';
+import { QuestionPage } from '../pages/question/question';
+import { HistoryPage } from '../pages/history/history';
+import { ResultsPage } from '../pages/results/results';
+import { AppUserProvider } from '../providers/app-user/app-user';
+import { QuestionsProvider } from '../providers/questions/questions';
+import { TestResultsProvider } from '../providers/test-results/test-results';
+import { LandingPage } from '../pages/landing/landing';
+import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
 
 let injections: any[] = [
   MyApp,
-  LobbyPage
+  LobbyPage,
+  QuestionPage,
+  HistoryPage,
+  ResultsPage,
+  LandingPage,
+  LoginPage,
+  RegisterPage
   ]
 
 @NgModule({
@@ -23,7 +38,10 @@ let injections: any[] = [
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AppUserProvider,
+    QuestionsProvider,
+    TestResultsProvider
   ]
 })
 export class AppModule {}
