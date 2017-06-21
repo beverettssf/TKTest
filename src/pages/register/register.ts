@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AppUsers } from '../../providers/app-user/app-user';
+import { AppUserProvider } from '../../providers/app-user/app-user';
 
 
 /**
@@ -19,7 +19,7 @@ export class RegisterPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public appUsers: AppUsers) {
+    public AppUserProvider: AppUsers) {
   }
 
   ionViewDidLoad() {
@@ -34,9 +34,18 @@ export class RegisterPage {
     .map(res => res.json())
     .subscribe(res => {
       // handle successful responses and decide what happens next
+      //window.localStor
     }, error => {
+    //   if(form.invalid) {
+    //   return alert("Please fill in all of the required fields.");
+    // }
       // inform the user of any known problems that arose, otherwise give a generic
       // failed message
+      //  404: not found
+      // 422: email is already taken
+      // (response.data === null): user is offline
+      // 500: the world has ended, or the server just isn’t online.
+
     });
 
  }

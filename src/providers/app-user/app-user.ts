@@ -17,7 +17,7 @@ export class AppUserProvider {
   
   baseUrl: string= "https://briannassf-phortonssf.c9users.io:8080/api"
   path: string= "/AppUsers"
-  
+
   register(newUserData) {
     return this.http.post(
       this.baseUrl + this.path,
