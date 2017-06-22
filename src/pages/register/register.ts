@@ -38,11 +38,11 @@ export class RegisterPage {
       window.localStorage.setItem('userId', res.id);
       this.navCtrl.setRoot(LobbyPage);
     }, error => {
-        alert("Please register again.");
+       alert("Please register again.");
       }
       // inform the user of any known problems that arose, otherwise give a generic
       // failed message
-      //  404: not found
+      //  if(error ) then 404: not found
       // 422: email is already taken
       // (response.data === null): user is offline
       // 500: the world has ended, or the server just isn’t online.

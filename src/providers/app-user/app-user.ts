@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { RegisterPage } from '../../pages/register/register';
+import { LoginPage } from '../../pages/login/login';
 /*
   Generated class for the AppUserProvider provider.
 
@@ -25,4 +26,10 @@ export class AppUserProvider {
     );
   }
 
+  login(userData) {
+    return this.http.post(
+      this.baseUrl + this.path+"/login",
+      userData
+    );
+  }
 }

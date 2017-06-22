@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AppUserProvider } from '../../providers/app-user/app-user';
+import { LobbyPage } from './../lobby/lobby'
 
 /**
  * Generated class for the LoginPage page.
@@ -14,11 +16,42 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  user: any = {}
+  
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public AppUser: AppUserProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
+  
+  signupForm(form) { 
+      if(form.invalid) {
+      return alert("Please fill in all of the required fields.");
+    }
+    this.AppUser.login(this.user)
+    .map(res => res.json())
+    .subscribe(res => {
+      console.log(res);
+      // handle successful responses and decide what happens next
+      window.localStorage.setItem('token', res.id);
+      window.localStorage.setItem('userId', res.userid);
+      this.navCtrl.setRoot(LobbyPage);
+    }, error => {
+       alert("Please login again.");
+      }
+      // inform the user of any known problems that arose, otherwise give a generic
+      // failed message
+      //  if(error ) then 404: not found
+      // 422: email is already taken
+      // (response.data === null): user is offline
+      // 500: the world has ended, or the server just isn’t online.
+
+    );
+
+ }
 
 }
