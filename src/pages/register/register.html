@@ -19,18 +19,28 @@
     <ion-item>
       <ion-label>First Name</ion-label>
       <ion-input name="firstName" type="text" placeholder="Name" [(ngModel)]="user.firstName"></ion-input>
+    </ion-item>
+    <ion-item>
       <ion-label>Last Name</ion-label>
       <ion-input name="lastName" type="text" placeholder="Last Name" [(ngModel)]="user.lastName"></ion-input>
+    </ion-item>
+    <ion-item>
       <ion-label>Organization</ion-label>
       <ion-input name="organization" type="text" placeholder="organization" [(ngModel)]="user.organization"></ion-input>
+    </ion-item> 
+    <ion-item>
       <ion-label>Email</ion-label>
       <ion-input name="email" type="email" placeholder="john@doe.com" [(ngModel)]="user.email" required></ion-input>
+    </ion-item> 
+    <ion-item>
       <ion-label>Password</ion-label>
       <ion-input name="password" type="password" placeholder="password" [(ngModel)]="user.password"></ion-input>
     </ion-item>
+    <ion-item>
     <button ion-button type="submit" class="button-block">
       Register
     </button>
+    </ion-item>
   </form>
 
 </ion-content>
