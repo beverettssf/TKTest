@@ -28,7 +28,7 @@ export class AppUserProvider {
 
   login(userData) {
     return this.http.post(
-      this.baseUrl + this.path+"/login",
+      this.baseUrl + this.path + "/login",
       userData
     );
   }

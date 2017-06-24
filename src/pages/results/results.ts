@@ -35,6 +35,7 @@ export class ResultsPage {
         labels: [
            'Avoiding',
             'Accommodating',
+            'Compromising',
             'Competing',
             'Collaborating',
           ],

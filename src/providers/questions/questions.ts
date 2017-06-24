@@ -15,4 +15,13 @@ export class QuestionsProvider {
     console.log('Hello QuestionsProvider Provider');
   }
 
+  baseUrl: string= "https://briannassf-phortonssf.c9users.io:8080/api"
+  path: string= "/Questions"
+  
+  getQuestions(token){
+      return this.http.get(
+        this.baseUrl + this.path + 
+          '?access_token=' + token
+          );
+    }
 }

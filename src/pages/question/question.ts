@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 import { LobbyPage } from './../lobby/lobby'
 import { ResultsPage } from './../results/results'
+import { QuestionsProvider } from '../../providers/questions/questions';
 /**
  * Generated class for the QuestionPage page.
  *
@@ -20,17 +21,38 @@ let apiQuestions = [{"Question_Number":1,"Answer_ID":"A","Text":"There are times
 export class QuestionPage {
   @ViewChild(Slides) slides: Slides;
   questions: any = [];
-  // questions: any = apiQuestions;
+  apiQuestions: any;
   testAnswers: any = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    for(let singleQuestion of apiQuestions){
-      if(!this.questions[singleQuestion.Question_Number - 1]){
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public questionsProv: QuestionsProvider
+  ) {
+    questionsProv.getQuestions(window.localStorage.getItem("token"))
+    .map(res => res.json())
+    .subscribe( res => {
+      console.log("res", res);
+      apiQuestions = res;
+      console.log("apiQuestions", apiQuestions)
+      for(let singleQuestion of apiQuestions){
+        if(!this.questions[singleQuestion.Question_Number - 1]){
         this.questions[singleQuestion.Question_Number - 1] = {};
-      }
+        }
         this.questions[singleQuestion.Question_Number - 1][singleQuestion.Answer_ID]=singleQuestion;
+      }
+      }, error => {
+        alert("Warning Will Robinson!");
+    });
     }
-  }
+    
+  //   for(let singleQuestion of apiQuestions){
+  //     if(!this.questions[singleQuestion.Question_Number - 1]){
+  //       this.questions[singleQuestion.Question_Number - 1] = {};
+  //     }
+  //       this.questions[singleQuestion.Question_Number - 1][singleQuestion.Answer_ID]=singleQuestion;
+  //   }
+  // }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad QuestionPage');
